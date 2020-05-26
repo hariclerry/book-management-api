@@ -1,7 +1,15 @@
-import express from "express";
+/**
+ * @file responsible for server startup and running
+ */
 
-const app = express();
+// local imports
+import app from './app';
+import models, { connectDb } from './models';
 
-app.listen(8000, () => {
-    console.log("server started at http://localhost:8000")
-})
+// constants
+const port = process.env.PORT || 8000;
+
+connectDb().then(async () => {
+    app.listen(port, () => console.log(`listening on port ${port}...`));
+  });
+
