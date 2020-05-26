@@ -1,0 +1,36 @@
+{
+  "name": "book-management-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d dist",
+    "start": "npm run build && node dist",
+    "restart": "rimraf dist && npm run start",
+    "dev": "nodemon --exec npm run restart"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hariclerry/book-management-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hariclerry/book-management-api/issues"
+  },
+  "homepage": "https://github.com/hariclerry/book-management-api#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "rimraff": "0.0.1-security"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs-extra": "^9.0.0",
+    "nodemon": "^2.0.4",
+    "rimraf": "^3.0.2"
+  }
+}
