@@ -36,6 +36,23 @@ exports.validate = method => {
 					.trim()
 			]
 		}
+		case 'bookCreation': {
+			return [
+				body('title', `Title is required`)
+					.exists()
+					.trim(),
+				body(
+					'isbn',
+					'Isbn is required and should be valid'
+				)
+                    .exists()
+					.trim()
+					.isLength({ min: 5 }),
+				body('author', 'Author is required and should have atleast 5 characters')
+					.exists()
+					.trim()
+			]
+		}	
 		default:
 			return null
 	}
