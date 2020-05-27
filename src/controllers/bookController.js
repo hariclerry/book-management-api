@@ -4,11 +4,14 @@
 
 //Third party imports
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 
 //local imports
 import Book from "../models/book";
 import {validationResult} from 'express-validator/check'; 
 
+//constants
+const { JWT_SECRET } = process.env
 class BookController {
   /**
    * @method fetchBooks
@@ -35,6 +38,8 @@ class BookController {
         res.status(422).json({ errors: errors.array() })
         return
     }
+    const usertoken = req.headers['x-auth-token'];
+    const decoded = jwt.verify(usertoken, JWT_SECRET);
 
     const book = await Book.findOne({ isbn });
     if (book)
@@ -48,9 +53,10 @@ class BookController {
       author,
       image
     });
+    newBook.userName = decoded.userName;
+    newBook.userId = decoded._id;
 
     const savedBook = await newBook.save();
-
     res.status(201).send({ data: savedBook, status: 'Success' });
     } catch (error) {
       res.status(500).send({ Error: error.message });
@@ -72,7 +78,6 @@ class BookController {
     }
 
     if (!mongoose.Types.ObjectId.isValid(bookId)) {
-      console.log
       return res.status(400).send({ message: `Invalid book ID` });
     }
   

@@ -12,14 +12,14 @@ const Schema = mongoose.Schema;
 const bookSchema = Schema({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   isbn: {
     type: String,
     required: true,
     minlength: 5,
     maxlength: 12,
-    unique: true
+    unique: true,
   },
   author: {
     type: String,
@@ -31,12 +31,19 @@ const bookSchema = Schema({
     type: String,
     required: false,
   },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  userName: {
+    type: String,
+    required: true,
+  },
+  userId: {
+    type: String,
+    required: true,
+  },
   created: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-const Book = mongoose.model('Book', bookSchema);
+const Book = mongoose.model("Book", bookSchema);
 export default Book;
