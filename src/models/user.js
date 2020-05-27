@@ -6,6 +6,7 @@
 // Third party imports
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
+require('dotenv').config()
 
 //constants
 const { JWT_SECRET } = process.env

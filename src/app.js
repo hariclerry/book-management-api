@@ -6,15 +6,12 @@
 import cors from "cors";
 import express from "express";
 import bodyParser from "body-parser";
+import expressValidator from "express-validator";
 
 require('dotenv').config();
 
 // local imports
-// import routes from "routes/index";
-// import cors from "cors";
-// const routes = require('./routes/routes');
-// require('./startup/db')();
-// require('./startup/config')();
+import routes from "./routes/routes";
 
 // initializes express app
 const app = express();
@@ -24,10 +21,9 @@ app.use(cors());
 app.use(bodyParser.raw());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// require('./startup/prod')(app);
 
 // inital route
-// routes(app);
+routes(app);
 app.get('/', (req, res) => {
   res.send('Hello user, welcome to Book management Application');
 });
