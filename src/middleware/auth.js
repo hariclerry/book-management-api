@@ -4,6 +4,10 @@
 
 // Third party imports
 import jwt from 'jsonwebtoken';
+require('dotenv').config()
+
+//constants
+const { JWT_SECRET } = process.env
 
 class Auth {
     static userAuth(req, res, next) {
@@ -11,7 +15,7 @@ class Auth {
         if (!token) return res.status(401).send('Access denied. No token provided.');
       
         try {
-          const decoded = jwt.verify(token, config.get('jwtPrivateKey'));
+          const decoded = jwt.verify(token, JWT_SECRET);
           req.user = decoded;
           next();
         } catch (ex) {

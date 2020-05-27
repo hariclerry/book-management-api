@@ -31,18 +31,8 @@ With Book Management APP you can:
  ```npm run build```
 
 5. Testing
-
-* In order to test the application you can the command
-```npm run test``` 
-
-VERSIONS
-
-The API runs with one version, Version 1 
-
-Input `http:127.0.0.1:8000/` followed by any of the following endpoints to demo version 1.
-
-|EndPoint|Functionality|
 TODO
+```npm run test``` 
 
 
 ### Checkout the live app on heroku

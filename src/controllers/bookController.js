@@ -2,6 +2,9 @@
  * @file contains all endpoints for creating, retrieving, editing and deleting books
  */
 
+//Third party imports
+const mongoose = require('mongoose');
+
 //local imports
 import Book from "../models/book";
 import {validationResult} from 'express-validator/check'; 
@@ -13,7 +16,7 @@ class BookController {
    */
   static async fetchBooks(req, res) {
     try {
-        const books = await Booke.find().sort('title');
+        const books = await Book.find().sort('title');
         res.status(200).send(books);
       } catch (error) {
         res.status(500).send(error.message);
@@ -69,9 +72,10 @@ class BookController {
     }
 
     if (!mongoose.Types.ObjectId.isValid(bookId)) {
+      console.log
       return res.status(400).send({ message: `Invalid book ID` });
     }
-
+  
     const book = await Book.findByIdAndUpdate(
       bookId,
       {
@@ -82,7 +86,6 @@ class BookController {
       },
       { new: true }
     );
-
     const savedBook = await book.save();
 
     if (!book) {

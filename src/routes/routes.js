@@ -6,12 +6,13 @@ import express from "express";
 // local imports
 import UserController from "../controllers/userController";
 import BookController from "../controllers/bookController";
-import { validate } from '../middleware/validator'
+import { validate } from '../middleware/validator';
+import Auth from '../middleware/auth'; 
 
 // constants
-const Router = express.Router();
 const { createUser, loginUser } = UserController;
-const { createBook, fetchBooks, updateBook, deleteBook} = UserController;
+const { createBook, fetchBooks, updateBook, deleteBook} = BookController;
+const { userAuth } = Auth;
 
 const routes = (app) => {
   //user routes
@@ -19,10 +20,10 @@ const routes = (app) => {
   app.route("/user/login").post(validate('userLogin'), loginUser);
 
   //Book routes
-  app.route("/books").get(fetchBooks);
-  app.route("/books").post(validate('bookCreation'), createBook);
-  app.route("/books/:id").put(validate('bookCreation'), updateBook);
-  app.route("/books/:id").delete(deleteBook);
+  app.route("/books").get(userAuth, fetchBooks);
+  app.route("/books").post(validate('bookCreation'), userAuth, createBook);
+  app.route("/books/:bookId").put(validate('bookCreation'), userAuth, updateBook);
+  app.route("/books/:bookId").delete(userAuth, deleteBook);
   return app;
 };
 
