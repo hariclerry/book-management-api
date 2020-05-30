@@ -25,7 +25,7 @@ class UserController {
 
       let user = await User.findOne({ email });
       if (user)
-        return res.status(400).send({ message: "User already registered." });
+        return res.status(409).send({ message: "User already registered." });
 
       user = new User({ userName, email, password });
       const salt = await bcrypt.genSalt(10);

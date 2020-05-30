@@ -18,13 +18,13 @@ const bookSchema = Schema({
     type: String,
     required: true,
     minlength: 5,
-    maxlength: 12,
+    maxlength: 30,
     unique: true,
   },
   author: {
     type: String,
     required: true,
-    minlength: 8,
+    minlength: 5,
     maxlength: 30,
   },
   image: {
