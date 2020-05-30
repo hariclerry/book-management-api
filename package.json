@@ -11,7 +11,8 @@
     "dev": "nodemon --exec npm run restart"
   },
   "engines": {
-    "node": "v10.15.3"
+    "node": "v12.16.1",
+    "npm": "v6.13.1"
   },
   "repository": {
     "type": "git",
