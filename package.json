@@ -10,6 +10,9 @@
     "restart": "rimraf dist && npm run start",
     "dev": "nodemon --exec npm run restart"
   },
+  "engines": {
+    "node": "v10.15.3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hariclerry/book-management-api.git"
