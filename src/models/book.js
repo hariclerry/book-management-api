@@ -28,8 +28,8 @@ const bookSchema = Schema({
     maxlength: 30,
   },
   image: {
-    type: String,
-    required: false,
+    type:Object,
+     required:false
   },
   userName: {
     type: String,

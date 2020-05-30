@@ -12,11 +12,13 @@ import { validationResult } from "express-validator/check";
 
 //constants
 const { JWT_SECRET } = process.env;
+
 class BookController {
   /**
    * @method fetchBooks
    * called when fetching books
    */
+
   static async fetchBooks(req, res) {
     try {
       const usertoken = req.headers["x-auth-token"];
@@ -35,7 +37,7 @@ class BookController {
    */
   static async createBook(req, res) {
     try {
-      const { title, isbn, author, image } = req.body;
+      const { title, isbn, author, image } = req.body.data;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         res.status(422).json({ errors: errors.array() });
