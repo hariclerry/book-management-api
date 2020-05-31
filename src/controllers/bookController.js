@@ -37,7 +37,7 @@ class BookController {
    */
   static async createBook(req, res) {
     try {
-      const { title, isbn, author, image } = req.body.data;
+      const { title, isbn, author, image } = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         res.status(422).json({ errors: errors.array() });

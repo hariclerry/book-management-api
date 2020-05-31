@@ -6,9 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d dist",
-    "start": "npm run build && node dist",
-    "restart": "rimraf dist && npm run start",
-    "dev": "nodemon --exec npm run restart"
+    "start": "npm run build && nodemon dist/index.js",
+    "serve": "node dist/index.js"
   },
   "engines": {
     "node": "v12.16.1",
