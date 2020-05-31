@@ -40,14 +40,14 @@ const upload = multer({ storage: storage });
 
 const routes = (app) => {
   //user routes
-  app.route("api/user").post(validate('userRegistration'), createUser);
-  app.route("api/user/login").post(validate('userLogin'), loginUser);
+  app.route("/api/user").post(validate('userRegistration'), createUser);
+  app.route("/api/user/login").post(validate('userLogin'), loginUser);
 
   //Book routes
-  app.route("api/books").get(userAuth, fetchBooks);
-  app.route("api/books").post(validate('bookCreation'),userAuth, createBook);
-  app.route("api/books/:bookId").put(validate('bookCreation'), userAuth, updateBook);
-  app.route("api/books/:bookId").delete(userAuth, deleteBook);
+  app.route("/api/books").get(userAuth, fetchBooks);
+  app.route("/api/books").post(validate('bookCreation'),userAuth, createBook);
+  app.route("/api/books/:bookId").put(validate('bookCreation'), userAuth, updateBook);
+  app.route("/api/books/:bookId").delete(userAuth, deleteBook);
   return app;
 };
 
