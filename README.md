@@ -20,24 +20,23 @@ With Book Management APP you can:
 ### Installation
 
 1. Clone the repository
+* See the ```.env-example``` file for the required env
 
 2. Install dependencies
   ```npm install```
 
 3. Run app
- ```npm run dev```
+ ```npm start```
 
 4. To build the app
  ```npm run build```
 
-5. Testing
-TODO
-```npm run test``` 
-
 
 ### Checkout the live app on heroku
-TODO
+-  https://book-management-sys.herokuapp.com/
 
 ### API Documentation with POSTMAN
-TODO
+- https://documenter.getpostman.com/view/7685332/SztEYkyu 
+
+
 The API is written in Node.Js using the Express framework and mongoDB as the database dialect.
