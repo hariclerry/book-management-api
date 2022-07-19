@@ -17,7 +17,7 @@ const app = express();
 
 // third party middleware
 app.use(cors());
-app.use(bodyParser.raw());
+// app.use(bodyParser.raw());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

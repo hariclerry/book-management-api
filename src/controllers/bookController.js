@@ -5,10 +5,11 @@
 //Third party imports
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+import { validationResult } from "express-validator/check";
 
 //local imports
 import Book from "../models/book";
-import { validationResult } from "express-validator/check";
+import uploadToCloudinary from "../utils/cloudinary";
 
 //constants
 const { JWT_SECRET } = process.env;
@@ -37,14 +38,17 @@ class BookController {
    */
   static async createBook(req, res) {
     try {
-      const { title, isbn, author, image } = req.body;
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        res.status(422).json({ errors: errors.array() });
-        return;
-      }
-      const usertoken = req.headers["x-auth-token"];
-      const user = jwt.verify(usertoken, JWT_SECRET);
+      const { title, isbn, author } = req.body;
+      const imagePath = req.file;
+
+      // const errors = validationResult(req);
+
+      // if (!errors.isEmpty()) {
+      //   res.status(422).json({ errors: errors.array() });
+      //   return;
+      // }
+      const userToken = req.headers["x-auth-token"];
+      const user = jwt.verify(userToken, JWT_SECRET);
 
       const book = await Book.findOne({ isbn });
       if (book)
@@ -52,11 +56,16 @@ class BookController {
           message: `Book with ${isbn} already exists`,
         });
 
+      // Image upload
+      let imageUrl = ''
+      const newPath = await uploadToCloudinary(imagePath)
+      imageUrl = newPath.url
+
       let newBook = new Book({
         title,
         isbn,
         author,
-        image,
+        imageUrl,
       });
       newBook.userName = user.userName;
       newBook.userId = user._id;

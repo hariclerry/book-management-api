@@ -7,7 +7,7 @@ import bcrypt from "bcrypt";
 
 //local imports
 import User from "../models/user";
-import {validationResult} from 'express-validator/check'; 
+import { validationResult } from 'express-validator/check';
 
 class UserController {
   /**
@@ -21,7 +21,7 @@ class UserController {
       if (!errors.isEmpty()) {
         res.status(422).json({ errors: errors.array() })
         return
-    }
+      }
 
       let user = await User.findOne({ email });
       if (user)
@@ -56,7 +56,7 @@ class UserController {
       if (!errors.isEmpty()) {
         res.status(422).json({ errors: errors.array() })
         return
-    }
+      }
 
       let user = await User.findOne({ email });
       if (!user)
@@ -69,7 +69,7 @@ class UserController {
         return res.status(400).send({ message: "Invalid password." });
 
       const token = user.generateAuthToken();
-      res.status(200).send({ token, message: "Login successful." });
+      res.status(200).send({ token, message: "Login successful.", isLoggedIn: true });
     } catch (error) {
       res.status(500).send({ Error: error.message });
     }

@@ -27,9 +27,9 @@ const bookSchema = Schema({
     minlength: 5,
     maxlength: 30,
   },
-  image: {
-    type:Object,
-     required:false
+  imageUrl: {
+    type: String,
+    required: false
   },
   userName: {
     type: String,
